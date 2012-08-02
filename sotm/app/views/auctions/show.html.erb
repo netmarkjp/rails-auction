@@ -1,40 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
+<h1>
   <%= @auction.title %>
-</p>
+</h1>
 
-<p>
-  <b>Description:</b>
+<img src="<%= @auction.image_url_main %>" />
+
+<div>
+  <%= @auction.start_at %> 開始
+</div>
+
+<div>
   <%= @auction.description %>
-</p>
+</div>
 
-<p>
-  <b>Image url main:</b>
-  <%= @auction.image_url_main %>
-</p>
-
-<p>
-  <b>Image url sub:</b>
-  <%= @auction.image_url_sub %>
-</p>
-
-<p>
-  <b>Winner:</b>
-  <%= @auction.winner %>
-</p>
-
-<p>
-  <b>Start at:</b>
-  <%= @auction.start_at %>
-</p>
+<%= form_for :bidding, :url => '/auctions/bid' do |f| %>
+<%= f.text_field:name%>
+<%= f.text_field:price%>
+<%= f.hidden_field:auction_uniq_id, :value => @auction.auction_uniq_id %>
+<%= submit_tag 'BID' %>
+<% end %>
 
 <p>
   <b>Auction uniq:</b>
   <%= @auction.auction_uniq_id %>
 </p>
 
+<table class="table table-striped">
+<tbody>
+<% @biddings.each do |bidding| %>
+<tr>
+  <td>
+    <%= bidding.name %>
+  </td>
+  <td>
+    <%= bidding.price %>
+  </td>
+  <td>
+    <%= bidding.created_at %>
+  </td>
+</tr>
+<% end %>
+</tbody>
+</table>
 
-<%= link_to 'Edit', edit_auction_path(@auction) %> |
 <%= link_to 'Back', auctions_path %>

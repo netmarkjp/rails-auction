@@ -15,6 +15,12 @@ class AuctionsController < ApplicationController
   def show
     @auction = Auction.find(params[:id])
 
+    @biddings = Bidding.find(:all, 
+                            :conditions => 
+                                ["auction_uniq_id=?",@auction.auction_uniq_id],
+                            :order => "created_at DESC",
+                            :limit => 10
+                            )
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @auction }
@@ -80,4 +86,19 @@ class AuctionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # POST /auctions/bid
+  # POST /auctions/bid/1
+  def bid
+    @bidding = Bidding.new(params[:bidding])
+
+    respond_to do |format|
+      if @bidding.save
+        format.html { redirect_to "/auctions" }
+      else
+        format.html { redirect_to "/auctions" }
+      end
+    end
+  end
+
 end
