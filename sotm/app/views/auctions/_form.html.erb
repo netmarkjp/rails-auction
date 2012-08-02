@@ -1,0 +1,45 @@
+<%= form_for(@auction) do |f| %>
+  <% if @auction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@auction.errors.count, "error") %> prohibited this auction from being saved:</h2>
+
+      <ul>
+      <% @auction.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :image_url_main %><br />
+    <%= f.text_field :image_url_main %>
+  </div>
+  <div class="field">
+    <%= f.label :image_url_sub %><br />
+    <%= f.text_field :image_url_sub %>
+  </div>
+  <div class="field">
+    <%= f.label :winner %><br />
+    <%= f.text_field :winner %>
+  </div>
+  <div class="field">
+    <%= f.label :start_at %><br />
+    <%= f.datetime_select :start_at %>
+  </div>
+  <div class="field">
+    <%= f.label :auction_uniq_id %><br />
+    <%= f.text_field :auction_uniq_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

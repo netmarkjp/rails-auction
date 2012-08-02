@@ -1,0 +1,35 @@
+<h1>Listing auctions</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image url main</th>
+    <th>Image url sub</th>
+    <th>Winner</th>
+    <th>Start at</th>
+    <th>Auction uniq</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @auctions.each do |auction| %>
+  <tr>
+    <td><%= auction.title %></td>
+    <td><%= auction.description %></td>
+    <td><%= auction.image_url_main %></td>
+    <td><%= auction.image_url_sub %></td>
+    <td><%= auction.winner %></td>
+    <td><%= auction.start_at %></td>
+    <td><%= auction.auction_uniq_id %></td>
+    <td><%= link_to 'Show', auction %></td>
+    <td><%= link_to 'Edit', edit_auction_path(auction) %></td>
+    <td><%= link_to 'Destroy', auction, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Auction', new_auction_path %>

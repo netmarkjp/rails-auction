@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  image_url_main: MyString
+  image_url_sub: MyString
+  winner: MyString
+  start_at: 2012-08-02 11:18:07
+  auction_uniq_id: MyString
+
+two:
+  title: MyString
+  description: MyText
+  image_url_main: MyString
+  image_url_sub: MyString
+  winner: MyString
+  start_at: 2012-08-02 11:18:07
+  auction_uniq_id: MyString

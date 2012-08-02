@@ -1,0 +1,49 @@
+rbenv local 1.9.2-p290
+rails new sotm
+cd sotm
+
+cat >> Gemfile << EOT
+gem 'twitter-bootstrap-rails'
+EOT
+bundle install
+rails generate bootstrap:install
+yes "y"|rails generate bootstrap:layout application fluid
+rails generate controller pages index
+rake db:create
+
+
+rails generate scaffold Auction title:string description:text image_url_main:string image_url_sub:string winner:string start_at:datetime auction_uniq_id:string
+rails generate scaffold Bidding name:string  price:integer auction_uniq_id:string
+rake db:migrate
+
+
+
+# rails generate scaffold Auction title:string description:text image_url_main:string image_url_sub:string winner:string start_at:datetime
+# rails generate scaffold Bidding name:string  price:integer
+# rails generate migration AddAuctionIdToBiddings
+# cat > `ls -tr db/migrate/*_add_auction_id_to_biddings.rb |tail -1` <<EOT
+# class AddAuctionIdToBiddings < ActiveRecord::Migration
+#   def self.up
+#     add_column(:biddings, :auction_id, :integer)
+#     add_index(:biddings, :auction_id)
+#   end
+#  
+#   def self.down
+#     remove_index(:biddings, :column => :auction_id)
+#     remove_column(:biddings, :auction_id)
+#   end
+# end
+# EOT
+# rake db:migrate
+# 
+# cat >app/models/auction.rb <<EOT
+# class Auction < ActiveRecord::Base
+#   has_many :biddings
+# end
+# EOT
+# 
+# cat >app/models/bidding.rb <<EOT
+# class Bidding < ActiveRecord::Base
+#   belongs_to :auction
+# end
+# EOT

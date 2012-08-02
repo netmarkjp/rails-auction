@@ -1,0 +1,27 @@
+<h1>Listing biddings</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Auction uniq</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @biddings.each do |bidding| %>
+  <tr>
+    <td><%= bidding.name %></td>
+    <td><%= bidding.price %></td>
+    <td><%= bidding.auction_uniq_id %></td>
+    <td><%= link_to 'Show', bidding %></td>
+    <td><%= link_to 'Edit', edit_bidding_path(bidding) %></td>
+    <td><%= link_to 'Destroy', bidding, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bidding', new_bidding_path %>

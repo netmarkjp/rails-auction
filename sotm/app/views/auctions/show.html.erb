@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @auction.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @auction.description %>
+</p>
+
+<p>
+  <b>Image url main:</b>
+  <%= @auction.image_url_main %>
+</p>
+
+<p>
+  <b>Image url sub:</b>
+  <%= @auction.image_url_sub %>
+</p>
+
+<p>
+  <b>Winner:</b>
+  <%= @auction.winner %>
+</p>
+
+<p>
+  <b>Start at:</b>
+  <%= @auction.start_at %>
+</p>
+
+<p>
+  <b>Auction uniq:</b>
+  <%= @auction.auction_uniq_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_auction_path(@auction) %> |
+<%= link_to 'Back', auctions_path %>
