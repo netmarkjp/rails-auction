@@ -16,7 +16,8 @@
 # Ignore all logfiles and tempfiles.
 /sotm/log/*.log
 /sotm/tmp
-=======
+/sotm/public/assets
+.sass-cache
 *.gem
 *.rbc
 .bundle

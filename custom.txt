@@ -47,3 +47,15 @@ rake db:migrate
 #   belongs_to :auction
 # end
 # EOT
+
+sudo apt-get install mysql-server mysql-client libmysqlclient-dev libsqlite3-dev
+vi Gemfile
+bundle.....
+vi config/database.yml
+vi config/environments/production.rb
+bundle exec rake db:migrate
+bundle exec rake assets:precompile RAILS_ENV=production
+RAILS_ENV=production ruby script/rails server -p80
+
+
+

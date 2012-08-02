@@ -19,7 +19,12 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  #adapter: sqlite3
+  #database: db/production.sqlite3
+  adapter: mysql2
+  database: sotm
+  host: localhost
+  username: root
+  password:
   pool: 5
   timeout: 5000
