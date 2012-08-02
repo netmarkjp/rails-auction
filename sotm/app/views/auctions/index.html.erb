@@ -1,25 +1,39 @@
-<h1>オリンピック開催記念！大放出オークション - メガネと自転車の五月女商会</h1>
+<script language="javascript">
+function jump(id){
+  location.replace('/auctions/'+id);
+}
+</script>
 
+<div class="hero-unit">
 
-<h1>開催中のオークション</h1>
+<h1>大放出オークション</h1>
+<p>
+ついに！４年に１度のオリンピックがついに！ついに開幕しました！<br />
+五月女商会も社を挙げてサムライたちを応援しています！<br />
+<br />
+そんなわけで、五月女商会ではオリンピック開催を記念してスペシャル新企画「大放出オークション」を開催いたします！！！！
+</p>
+</div>
 
-<table class="table table-striped">
-<tbody>
-<% @auctions.each do |auction| %>
-<tr>
-    <td>
-        <%= link_to '詳しく見る', auction %>
-    </td>
-    <td>
-        <img src="<%= auction.image_url_sub %>" width="120px"/>
-    </td>
-    <td>
-        <span class="">★<%= auction.start_at %>開始★</span>
-        <br />
-        <span class=""><%= auction.title %></span>
-    </td>
-</tr>
-<% end %>
-</tbody>
-</table>
+<hr />
 
+<div class="span8">
+  <h1>開催中のオークション</h1>
+  
+  <table class="table table-striped">
+  <tbody>
+  <% @auctions.each do |auction| %>
+  <tr onClick="jump(<%= auction.id %>)">
+      <td>
+          <img src="<%= auction.image_url_sub %>" width="120px"/>
+      </td>
+      <td>
+          <span class="">★<%= auction.start_at %>開始★</span>
+          <br />
+          <span class=""><%= auction.title %></span>
+      </td>
+  </tr>
+  <% end %>
+  </tbody>
+  </table>
+</div>

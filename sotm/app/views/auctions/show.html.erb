@@ -1,3 +1,34 @@
+<script language="javascript">
+$(function(){
+  updateBiddings();
+  $('#button_updateBiddings').click(function(){updateBiddings()});
+  $('#button_bidding').click(function(){bidding()});
+});
+function updateBiddings(){
+  $.getJSON('/biddings.json',{},function(jsondata){
+    $('#tbody_bidding').children().remove();
+    $(jsondata).each(function(i,val){
+      if( val['auction_uniq_id'] == '<%= @auction.auction_uniq_id %>' ){
+        $('#tbody_bidding').append(
+            '<tr>'
+          + '<td>'+val['name']+'</td>'
+          + '<td>'+val['price']+'</td>'
+          + '<td>'+val['created_at']+'</td>'
+          + '<tr>'
+        );
+      }
+    });
+  });
+};
+function bidding(){
+  if ( $('#bidding_name').val() != '' && $('#bidding_price').val() != ''){
+    $.post('/auctions/bid', $('form').serialize(), function(){updateBiddings()});
+    $('#bidding_name').val('');
+    $('#bidding_price').val('');
+  };
+};
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <h1>
@@ -11,37 +42,26 @@
 </div>
 
 <div>
+<blockquote>
   <%= @auction.description %>
+</blockquote>
 </div>
 
-<%= form_for :bidding, :url => '/auctions/bid' do |f| %>
-<%= f.text_field:name%>
-<%= f.text_field:price%>
+<div style="float:left">
+<%= form_for :bidding, :url => '' do |f| %>
+name: <%= f.text_field:name%>
+price: <%= f.text_field:price%>
 <%= f.hidden_field:auction_uniq_id, :value => @auction.auction_uniq_id %>
-<%= submit_tag 'BID' %>
 <% end %>
-
-<p>
-  <b>Auction uniq:</b>
-  <%= @auction.auction_uniq_id %>
-</p>
-
+</div>
+<div style="float:left">
+  <button id="button_bidding" class="btn btn-info">BID</button>
+</div>
+<hr  style="width:100%"/>
+<h1>biddings
+<button id="button_updateBiddings" class="btn">update</button></h1>
 <table class="table table-striped">
-<tbody>
-<% @biddings.each do |bidding| %>
-<tr>
-  <td>
-    <%= bidding.name %>
-  </td>
-  <td>
-    <%= bidding.price %>
-  </td>
-  <td>
-    <%= bidding.created_at %>
-  </td>
-</tr>
-<% end %>
+<tbody id="tbody_bidding">
 </tbody>
 </table>
 
-<%= link_to 'Back', auctions_path %>

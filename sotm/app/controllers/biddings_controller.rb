@@ -2,7 +2,7 @@ class BiddingsController < ApplicationController
   # GET /biddings
   # GET /biddings.json
   def index
-    @biddings = Bidding.all
+    @biddings = Bidding.find(:all, :order => "created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
